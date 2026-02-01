@@ -8,7 +8,7 @@
   
 </template>
 
-<script lang="ts" setup>
+<script setup>
 import Header from './Header.vue'
 import Footer from './Footer.vue'
 import Sidebar from './Sidebar.vue';
