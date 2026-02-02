@@ -1,11 +1,15 @@
 <template>
+      
+    <div id="main-wrapper">
     <Header />
-    <div>
         <Sidebar/>
            <RouterView/>
-    </div>
-    <Footer/>
-  
+   
+   
+  </div>
+    <!--**********************************
+        Main wrapper end
+    ***********************************-->
 </template>
 
 <script setup>
