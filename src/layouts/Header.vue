@@ -796,13 +796,13 @@
                 <nav class="navbar navbar-expand">
                     <div class="collapse navbar-collapse justify-content-between">
                         <div class="header-left">
-                            <div class="dashboard_bar">
+                            <!-- <div class="dashboard_bar">
                                 Dashboard
-                            </div>
+                            </div> -->
                         </div>
                         <ul class="navbar-nav header-right">
                             <li class="nav-item d-flex align-items-start">
-                                <div class="input-group search-area">
+                                <!-- <div class="input-group search-area">
                                     <input type="text" class="form-control" id="search"
                                         placeholder="Search here...">
                                     <span class="input-group-text"><a href="javascript:void(0)"><svg width="28"
@@ -816,7 +816,7 @@
                                                     fill="white" />
                                             </svg>
                                         </a></span>
-                                </div>
+                                </div> -->
                             </li>
                         </ul>
                         <div class="dropdown header-profile2 ">
