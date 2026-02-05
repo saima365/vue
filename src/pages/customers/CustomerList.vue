@@ -74,6 +74,7 @@
                   </div>
                 </td>
               </tr>
+
             </tbody>
           </table>
         </div>
@@ -83,9 +84,7 @@
 </template>
 
 <script setup>
-function contentClick() {
-  console.log("Main content clicked!");
-}
+
 import axios from "axios";
 import { onMounted, ref } from "vue";
 
@@ -94,10 +93,10 @@ const customers = ref([]);
 
 const fetchCustomers = () => {
   axios
-    .get(`${baseUrl}/customer`)
+    .get(`${baseUrl}/customers`)
     .then((res) => {
-      console.log(res.data);
-      customers.value = res.data;
+      console.log(res.data.customers);
+      customers.value = res.data.customers;
     })
     .catch();
 };
