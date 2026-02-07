@@ -63,10 +63,10 @@
                       <i class="bi bi-three-dots"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                      <li><a class="dropdown-item" href="#">Edit</a></li>
+                      <li><router-link class="dropdown-item" :to="`/customer/edit/${customer.id}`">Edit</router-link></li>
                       <li><a class="dropdown-item" href="#">Move</a></li>
                       <li>
-                        <button type="button" class="dropdown-item theme-red">
+                        <button @click="customerDelete(customer.id)" type="button" class="dropdown-item theme-red">
                           Delete
                         </button>
                       </li>
@@ -103,6 +103,20 @@ const fetchCustomers = () => {
 onMounted(() => {
   fetchCustomers();
 });
+function customerDelete(id){
+   if (!confirm("Are you sure you want to delete this client?")) {
+    return
+  }
+  axios.delete(`${baseUrl}/customers/${id}`)
+  .then(res=>{
+    console.log(res);
+     fetchCustomers();
+  })
+  .catch(err=>{
+    console.log(err);
+    
+  })
+}
 </script>
 
 <style>
