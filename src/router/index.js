@@ -13,7 +13,7 @@ const routes = [
         {path:"/", component:Dashboard},
         {path:"/customers", component:CustomerList},
         {path:"/customer/create", component:CreateCustomer},
-        {path:"/customer/edit", component:EditCustomer},
+        {path:"/customer/edit/:id", component:EditCustomer},
 ];
 
 export const router = createRouter({
