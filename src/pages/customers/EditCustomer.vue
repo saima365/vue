@@ -122,7 +122,9 @@ const router = useRouter();
 const route = useRoute();
 let customerId = route.params.id;
 console.log(customerId);
-let customers = ref({});
+let customers = ref({
+
+});
 const baseUrl = import.meta.env.VITE_BASE_URL;
 
 const fetchCustomer = () => {
