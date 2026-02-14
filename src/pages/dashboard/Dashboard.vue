@@ -612,7 +612,7 @@
 </template>
 
 <script setup>
-
+	const imgUrl=import.meta.env.VITE_IMG_URL;
 </script>
 
 <style>

@@ -6,7 +6,7 @@
 
   <!-- Body -->
   <div class="p-4">
-    <form>
+    <form @submit.prevent="submit">
       <!-- Email -->
       <div class="mb-3">
         <label class="form-label">Email Address</label>
@@ -14,13 +14,14 @@
           type="email"
           class="form-control"
           placeholder="you@example.com"
+          v-model="form.email"
         />
       </div>
 
       <!-- Password -->
       <div class="mb-3 position-relative">
         <label class="form-label">Password</label>
-        <input type="password" class="form-control" placeholder="••••••••" />
+        <input type="password" ref="password" class="form-control"  v-model="form.password"/>
         <button class="eye-btn" type="button">
           <i class="bi bi-eye"></i>
         </button>
@@ -36,7 +37,7 @@
       </div>
 
       <!-- Login button -->
-      <button type="button" class="btn btn-danger w-100 btn-login mb-3">
+      <button type="submit" class="btn btn-danger w-100 btn-login mb-3">
         Login
       </button>
 
@@ -51,6 +52,28 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { reactive, ref, useTemplateRef } from 'vue';
+import { useRouter } from 'vue-router';
+import Auth from '../../services/auth';
+const password = useTemplateRef('password')
+const router=useRouter();
+const form = reactive({
+  email:"",
+  password:"",
+});
+const error=ref("");
+const submit=async()=>{
+  try {
+    await Auth.login(form);
+    router.push("/")
+  } catch (err) {
+    error.value="Login failed";
+  }
+};
+
+
+
+</script>
 
 <style></style>
