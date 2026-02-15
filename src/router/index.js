@@ -8,13 +8,15 @@ import Register from "../pages/login/register.vue";
 import Main from "../layouts/Main.vue";
 import Login from "../pages/login/Login.vue";
 import Auth from "../services/auth";
+import TransactionList from "../pages/transactions/TransactionList.vue";
+import CreateTransaction from "../pages/transactions/CreateTransaction.vue";
 
 const routes = [
   {
     path: "/login",
     component: MainForLogin,
     children: [
-      { path: "/login", component: Login },
+      { path: "", component: Login },
       {path:"/register", component:Register}
     ],
   },
@@ -23,10 +25,11 @@ const routes = [
     component: Main,
     children: [
       { path: "/", component: Dashboard, meta: { requiresAuth: true } },
-      { path: "customers", component: CustomerList, meta: { guest: true } },
-      { path: "/customers", component: CustomerList },
-      { path: "/customer/create", component: CreateCustomer },
-      { path: "/customer/edit/:id", component: EditCustomer },
+      { path: "/customers", component: CustomerList, meta: { requiresAuth: true } },
+      { path: "/customer/create", component: CreateCustomer, meta: { requiresAuth: true } },
+      { path: "/customer/edit/:id", component: EditCustomer, meta: { requiresAuth: true } },
+      { path: "/transactions", component: TransactionList, meta: { requiresAuth: true } },
+      { path: "/transaction/create", component: CreateTransaction, meta: { requiresAuth: true } },
     ],
   },
 ];
@@ -35,19 +38,16 @@ export const router = createRouter({
   history: createWebHistory(),
   routes,
 });
-router.beforeEach((to,from,next)=>{
-
+router.beforeEach((to, from, next) => {
   const logged = Auth.isAuthenticated();
 
-  if(to.meta.requiresAuth && !logged){
+  if (to.matched.some(record => record.meta.requiresAuth) && !logged) {
     return next("/login");
   }
 
-  if(to.meta.guest && logged){
+  if (to.matched.some(record => record.meta.guest) && logged) {
     return next("/");
   }
 
   next();
-
-  
 });

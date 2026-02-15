@@ -1083,7 +1083,7 @@ const imgUrl = import.meta.env.VITE_IMG_URL;
 const router = useRouter();
 
 const logout = async ()=>{
-  await Auth.logout;
+  await Auth.logout();
   router.push("/login");
 };
 

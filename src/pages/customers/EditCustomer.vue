@@ -144,28 +144,41 @@ onMounted(() => {
 function handlePhoto(e) {
     customers.value.img = e.target.files[0];
 }
+
 function handleUpdate() {
   let formData = new FormData();
-  formData.append("name", customers.value.name);
-  formData.append("email", customers.value.email);
-  formData.append("phone", customers.value.phone);
-  formData.append("address", customers.value.address);
-  formData.append("gender", customers.value.gender);
-  formData.append("status", customers.value.status);
-  formData.append("date_of_birth", customers.value.date_of_birth);
- if (customers.value.img) {
+  
+ 
+  formData.append("name", customers.value.name || "");
+  formData.append("email", customers.value.email || "");
+  formData.append("phone", customers.value.phone || "");
+  formData.append("address", customers.value.address || "");
+  formData.append("gender", customers.value.gender || "");
+  formData.append("status", customers.value.status || "");
+  formData.append("date_of_birth", customers.value.date_of_birth || "");
+  formData.append("_method", "PUT");
+
+  if (customers.value.img instanceof File) {
     formData.append("img", customers.value.img);
   }
+
+  // console.log(formData);
+  
+  
+  
   axios
-    .put(`${baseUrl}/customers/${customerId}`, formData)
+    .post(`${baseUrl}/customers/${customerId}`,formData)
     .then((res) => {
-      console.log(res);
+      console.log(res.data);
       router.push("/customers");
     })
     .catch((err) => {
+    
       console.log(err);
+     
     });
 }
+
 </script>
 
 <style></style>
