@@ -41,7 +41,7 @@
 						</a>
 						<ul aria-expanded="false">
 							<li><a href="">Accounts</a></li>
-							<li><a href="">Transactions</a></li>
+							<li><a href="/transactions">Transactions</a></li>
 							<li><a href="post-details.html">Savings</a></li>
 							<li><a class="has-arrow" href="javascript:void()" aria-expanded="false">Deposit</a>
 								<ul aria-expanded="false">
@@ -73,7 +73,7 @@
 								</g></g>
 								</svg>
 						</div>
-							<span class="nav-text">User Managemet</span>
+							<span class="nav-text">User Management</span>
 						</a>
 						<ul aria-expanded="false">
 							<li><a href="/customers">Account Holders</a></li>
