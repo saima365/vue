@@ -14,7 +14,7 @@
               <div class="input-group mb-3">
                 <input
                   type="text"
-                  v-model="accountNumber"
+                  v-model="transactions.account_id"
                   class="form-control"
                   placeholder="Account number"
                 />
@@ -33,7 +33,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  v-model="accountHolder"
+                  v-model="transactions.name"
                   readonly
                 />
               </div>
@@ -106,15 +106,16 @@ const router = useRouter();
 
 const transactions = reactive({
   account_id: "",
+  name:"",
   transaction_type_id: "",
   amount: "",
   date: "",
 });
 
-const accountNumber = ref("");
-const accountHolder = ref("");
+// const accountNumber = ref("");
+// const accountHolder = ref("");
 const transactionTypes = ref([]); 
-const account_number = ref([]); 
+// const account_number = ref([]); 
 
 
 
@@ -131,17 +132,17 @@ const fetchTransactionTypes = async () => {
 };
 
 const fetchUser = async () => {
-  if (!accountNumber.value) {
+  if (!transactions.account_id) {
     alert("Please enter account number");
     return;
   }
-// http://localhost/Laravel/batch66/public/api/account_number/001
+
   try {
     const { data } = await api.get(
-      `/account_number/${accountNumber.value}`
+      `/account_number/${transactions.account_id}`
     );
      console.log(data)
-    accountHolder.value = data[0].customer.name;
+    transactions.name = data[0].customer.name;
     // account_number.account_id = data.customer.account_id
 ;
   } catch (error) {
@@ -154,8 +155,10 @@ const fetchUser = async () => {
 
 const handleCreate = async () => {
   try {
-    await api.post(`/transactions`, transactions);
-    router.push("/transactions");
+    let res = await api.post(`/transactions`, transactions);
+    console.log(res);
+    
+   // router.push("/transactions");
   } catch (error) {
     console.log(error);
   }

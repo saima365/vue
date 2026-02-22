@@ -144,7 +144,7 @@
                             <a class="dropdown-item" href="#"
                               >Cancel Transaction</a
                             >
-                            <a class="dropdown-item" href="#">View Details</a>
+                            <a class="dropdown-item" href="/transaction/show/{id}">View Details</a>
                           </div>
                         </div>
                       </td>

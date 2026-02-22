@@ -10,6 +10,7 @@ import Login from "../pages/login/Login.vue";
 import Auth from "../services/auth";
 import TransactionList from "../pages/transactions/TransactionList.vue";
 import CreateTransaction from "../pages/transactions/CreateTransaction.vue";
+import Statement from "../pages/transactions/Statement.vue";
 
 const routes = [
   {
@@ -30,6 +31,7 @@ const routes = [
       { path: "/customer/edit/:id", component: EditCustomer, meta: { requiresAuth: true } },
       { path: "/transactions", component: TransactionList, meta: { requiresAuth: true } },
       { path: "/transaction/create", component: CreateTransaction, meta: { requiresAuth: true } },
+      { path: "/transaction/statement", component: Statement, meta: { requiresAuth: true } },
     ],
   },
 ];
